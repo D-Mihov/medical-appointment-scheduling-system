@@ -33,19 +33,19 @@ public class RegistrationController {
 
     @PostMapping("/signup")
     public String signup(@ModelAttribute("signupModel") @Valid SignupModel signupModel, BindingResult bindingResult, Model model) {
-        signupModel.setUserRole("patient");
+        signupModel.setUserRole("PATIENT");
         System.out.println(signupModel.toString());
 
         if (!signupModel.getPassword().equals(signupModel.getConfirmPassword())) {
-            bindingResult.rejectValue("password", "signup.form.password.nomatch");
-            bindingResult.rejectValue("confirmPassword", "signup.form.password.nomatch");
+            bindingResult.rejectValue("password", "form.password.nomatch");
+            bindingResult.rejectValue("confirmPassword", "form.password.nomatch");
         }
 
         if (bindingResult.hasErrors()) {
             return "signup";
         }
 
-        this.userService.createUser(signupModel);
+        this.userService.createPatientUser(signupModel);
         this.patientService.createPatient(signupModel);
 
         return "redirect:/";

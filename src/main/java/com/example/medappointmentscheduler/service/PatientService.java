@@ -7,12 +7,8 @@ import java.util.List;
 
 public interface PatientService {
     Patient createPatient(SignupModel signupModel);
-
     List<Patient> getAllPatients();
-
     Patient getPatientById(Long patientId);
-
-    Patient updatePatient(Long patientId, Patient patientDetails);
-
+    Patient updatePatient(Long patientId, SignupModel patientDTO);
     void deletePatient(Long patientId);
 }

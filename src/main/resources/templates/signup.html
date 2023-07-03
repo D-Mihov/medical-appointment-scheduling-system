@@ -11,44 +11,44 @@
     <link rel="stylesheet" type="text/css" href="/css/register.css">
 </head>
 <body>
-<section class="h-100 h-v-center">
+<section class="align-items-center">
     <div class="container">
         <div class="title">Patient Registration</div>
         <div class="content">
             <form th:action="@{/signup}" method="post" th:object="${signupModel}">
                 <div class="user-details">
                     <div class="input-box">
-                        <span class="details">First Name</span>
+                        <span class="details">First Name<span class="required"></span></span>
                         <input type="text" th:field="*{firstName}" placeholder="Enter your first name" required>
                         <small class="text-danger" th:errors="*{firstName}"></small>
                     </div>
                     <div class="input-box">
-                        <span class="details">Last Name</span>
+                        <span class="details">Last Name<span class="required"></span></span>
                         <input type="text" th:field="*{lastName}" placeholder="Enter your last name" required>
                         <small class="text-danger" th:errors="*{lastName}"></small>
                     </div>
                     <div class="input-box">
-                        <span class="details">Email</span>
+                        <span class="details">Email<span class="required"></span></span>
                         <input type="text" th:field="*{email}" placeholder="Enter your email" required>
                         <small class="text-danger" th:errors="*{email}"></small>
                     </div>
                     <div class="input-box">
-                        <span class="details">Phone Number</span>
+                        <span class="details">Phone Number<span class="required"></span></span>
                         <input type="text" th:field="*{phone}" placeholder="Enter your number" required>
                         <small class="text-danger" th:errors="*{phone}"></small>
                     </div>
                     <div class="input-box">
-                        <span class="details">Password</span>
+                        <span class="details">Password<span class="required"></span></span>
                         <input type="password" th:field="*{password}" placeholder="Enter your password" required>
                         <small class="text-danger" th:errors="*{password}"></small>
                     </div>
                     <div class="input-box">
-                        <span class="details">Confirm Password</span>
+                        <span class="details">Confirm Password<span class="required"></span></span>
                         <input type="password" th:field="*{confirmPassword}" placeholder="Confirm your password" required>
                         <small class="text-danger" th:errors="*{confirmPassword}"></small>
                     </div>
                     <div class="input-box">
-                        <span class="details">Date of Birth</span>
+                        <span class="details">Date of Birth<span class="required"></span></span>
                         <input type="date" th:field="*{dateOfBirth}" required>
                         <small class="text-danger" th:errors="*{dateOfBirth}"></small>
                     </div>
@@ -56,7 +56,7 @@
                         <input type="radio" name="gender" id="dot-1" th:value="Male" th:field="*{gender}" required>
                         <input type="radio" name="gender" id="dot-2" th:value="Female" th:field="*{gender}" required>
                         <small class="text-danger" th:errors="*{gender}"></small>
-                        <span class="details">Gender</span>
+                        <span class="details">Gender<span class="required"></span></span>
                         <div class="category">
                             <label for="dot-1">
                                 <span class="dot one"></span>
@@ -69,8 +69,8 @@
                         </div>
                     </div>
                     <div class="input-box">
-                        <span class="details">Medical History(optional)</span>
-                        <textarea rows="3" cols="78" th:field="*{medicalHistory}" placeholder="Enter your medical history"></textarea>
+                        <span class="details">Medical History</span>
+                        <textarea rows="3" cols="76" th:field="*{medicalHistory}" placeholder="Enter your medical history(optional)"></textarea>
                     </div>
                 </div>
                 <div class="button">
@@ -78,16 +78,16 @@
                 </div>
                 <div class="row">
                     <div class="col-6 text-start">
-                        <a th:href="@{/signupDoctor}">Sign up as Doctor!</a>
+                        <a th:href="@{/login}">Have account already? Login!</a>
                     </div>
                     <div class="col-6 text-end">
-                        <a th:href="@{/login}">Have account already? Login!</a>
+                        <a th:href="@{/}">Return to Home!</a>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-    <footer th:replace="fragments/commons.html::footerx"></footer>
+    <footer th:replace="fragments/commons.html::footerx(textColor='text-white')"></footer>
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"

@@ -24,25 +24,6 @@ public class PatientServiceImpl implements PatientService {
         this.userRepository = userRepository;
     }
 
-    @Override
-    public Patient createPatient(SignupModel signupModel) {
-        Patient patient = new Patient();
-        patient.setFirstName(signupModel.getFirstName());
-        patient.setLastName(signupModel.getLastName());
-        patient.setEmail(signupModel.getEmail());
-        patient.setPhone(signupModel.getPhone());
-        patient.setDateOfBirth(java.sql.Date.valueOf(signupModel.getDateOfBirth()));
-        patient.setGender(PatientGenderEnum.valueOf(signupModel.getGender()));
-        patient.setMedicalHistory(signupModel.getMedicalHistory());
-        patient.setCreatedAt(new Timestamp(System.currentTimeMillis()));
-        patient.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
-
-        User user = this.userRepository.findByEmail(signupModel.getEmail());
-
-        patient.setUser(user);
-
-        return patientRepository.save(patient);
-    }
 
     @Override
     public List<Patient> getAllPatients() {
@@ -54,19 +35,29 @@ public class PatientServiceImpl implements PatientService {
         return patientRepository.findById(patientId)
                 .orElseThrow(() -> new PatientNotFoundException(patientId));
     }
-
     @Override
-    public Patient updatePatient(Long patientId, Patient patientDetails) throws PatientNotFoundException {
-        Patient patient = getPatientById(patientId);
-        patient.setFirstName(patientDetails.getFirstName());
-        patient.setLastName(patientDetails.getLastName());
-        patient.setEmail(patientDetails.getEmail());
-        patient.setPhone(patientDetails.getPhone());
-        patient.setDateOfBirth(patientDetails.getDateOfBirth());
-        patient.setGender(patientDetails.getGender());
-        patient.setMedicalHistory(patientDetails.getMedicalHistory());
+    public Patient createPatient(SignupModel patientDTO) {
+        Patient patient = new Patient();
+        SetPatientDetails(patientDTO, patient);
+        patient.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+        patient.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+
+        User user = this.userRepository.findByEmail(patientDTO.getEmail());
+
+        patient.setUser(user);
+
         return patientRepository.save(patient);
     }
+
+    @Override
+    public Patient updatePatient(Long patientId, SignupModel patientDTO) throws PatientNotFoundException {
+        Patient patient = getPatientById(patientId);
+        SetPatientDetails(patientDTO, patient);
+        patient.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+
+        return patientRepository.save(patient);
+    }
+
 
     @Override
     public void deletePatient(Long patientId) throws PatientNotFoundException {
@@ -74,4 +65,13 @@ public class PatientServiceImpl implements PatientService {
         patientRepository.delete(patient);
     }
 
+    private void SetPatientDetails(SignupModel patientDTO, Patient patient) {
+        patient.setFirstName(patientDTO.getFirstName());
+        patient.setLastName(patientDTO.getLastName());
+        patient.setEmail(patientDTO.getEmail());
+        patient.setPhone(patientDTO.getPhone());
+        patient.setDateOfBirth(java.sql.Date.valueOf(patientDTO.getDateOfBirth()));
+        patient.setGender(PatientGenderEnum.valueOf(patientDTO.getGender()));
+        patient.setMedicalHistory(patientDTO.getMedicalHistory());
+    }
 }
