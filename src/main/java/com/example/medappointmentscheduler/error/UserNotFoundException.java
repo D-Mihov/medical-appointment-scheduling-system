@@ -1,0 +1,7 @@
+package com.example.medappointmentscheduler.error;
+
+public class UserNotFoundException extends RuntimeException {
+    public UserNotFoundException(String email) {
+        super("User with email:" + email + " not found");
+    }
+}
