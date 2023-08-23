@@ -13,34 +13,32 @@
 <body>
 <section class="align-items-center">
     <div class="container">
-        <div class="title">Login</div>
+        <div class="title" th:text="#{login.form.title}">Login</div>
         <div class="content">
             <form th:action="@{/login}" method="post">
                 <div class="user-details">
                     <div class="input-box">
-                        <span class="details">Email</span>
-                        <input type="text" size="40" name="email" placeholder="Enter your email" required>
-<!--                        <small th:if="${errorMessage}" class="text-danger" th:text="${errorMessage}"></small>-->
+                        <span class="details" th:text="#{login.form.email}">Email</span>
+                        <input type="text" size="40" name="email" required>
                     </div>
                     <div class="input-box">
-                        <span class="details">Password</span>
-                        <input type="password" size="40" name="password" placeholder="Enter your password" required>
-<!--                        <small th:if="${errorMessage}" class="text-danger" th:text="${errorMessage}"></small>-->
+                        <span class="details" th:text="#{login.form.password}">Password</span>
+                        <input type="password" size="40" name="password" required>
                     </div>
                 </div>
-                <p th:if="${param.badCredentials ne null}" class="text-danger text-center">
+                <p th:if="${param.badCredentials ne null}" class="text-danger text-center" th:text="#{login.form.invalid}">
                     Invalid username or password.
                 </p>
 
                 <div class="button">
-                    <input type="submit" value="Login">
+                    <input type="submit" th:value="#{login.form.button}">
                 </div>
                 <div class="row">
                     <div class="col-6 text-start">
-                        <a th:href="@{/signup}">Don't have account? Sign up!</a>
+                        <a th:href="@{/signup}" th:text="#{login.form.signup.link}">Don't have account? Sign up!</a>
                     </div>
                     <div class="col-6 text-end">
-                        <a th:href="@{/}">Return to Home!</a>
+                        <a th:href="@{/}" th:text="#{login.form.home.link}">Return to Home!</a>
                     </div>
                 </div>
             </form>

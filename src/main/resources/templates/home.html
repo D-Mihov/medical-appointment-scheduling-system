@@ -19,11 +19,20 @@
                     height="120"
                     alt="HealthSync"
                     loading="lazy"
-                    style="margin-top: 10px;"
-            />
-            <h4 class="heading">Choose an option:</h4>
-            <a th:href="@{/login}" class="spark-button w-button">Login</a>
-            <a th:href="@{/signup}" class="spark-button w-button">Sign Up</a>
+                    style="margin-top: 10px;margin-bottom: 30px"
+            /><br>
+            <h6 class="one-row-element" style="color: #6b72ff;" th:text="#{home.unauthenticated.lang}">Language: </h6>
+            <a class="one-row-element" th:href="@{'?lang=en'}">
+                <img src="/img/gb.png" alt="en">
+            </a>
+            <h5 class="one-row-element" style="margin-top: 0px; margin-bottom: 0px">|</h5>
+            <a class="one-row-element" th:href="@{'?lang=bg'}">
+                <img src="/img/bg.png" alt="bg">
+            </a><br>
+            <div style="margin-top: 30px">
+            <a th:href="@{/login}" class="spark-button w-button" th:text="#{home.unauthenticated.login}">Login</a>
+            <a th:href="@{/signup}" class="spark-button w-button" th:text="#{home.unauthenticated.signup}">Sign Up</a>
+            </div>
         </div>
         <footer th:replace="fragments/commons.html::footerx(textColor='text-white')"></footer>
     </div>

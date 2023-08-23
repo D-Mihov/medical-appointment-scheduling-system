@@ -34,7 +34,6 @@ public class RegistrationController {
     @PostMapping("/signup")
     public String signup(@ModelAttribute("signupModel") @Valid SignupModel signupModel, BindingResult bindingResult, Model model) {
         signupModel.setUserRole("PATIENT");
-        System.out.println(signupModel.toString());
 
         if (!signupModel.getPassword().equals(signupModel.getConfirmPassword())) {
             bindingResult.rejectValue("password", "form.password.nomatch");

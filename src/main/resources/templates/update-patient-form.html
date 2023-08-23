@@ -19,37 +19,42 @@
 <header th:replace="/fragments/commons::nav"></header>
 <section class="h-v-center">
   <div class="container">
-    <div class="title">Patient Update</div>
+    <div class="title" th:text="#{update.patient.title}">Patient Update</div>
     <div class="content">
       <form th:action="@{/patients/__${id}__/edit}" method="post" th:object="${signupModel}">
         <div class="user-details">
           <div class="row">
             <div class="input-box col">
-              <span class="details">First Name<span class="required"></span></span>
+              <span class="details" th:text="#{signup.form.fname}">First Name<span class="required"></span></span>
+              <span class="required"></span>
               <input type="text" maxlength="30" th:field="*{firstName}" th:value="*{firstName}" required>
               <small class="text-danger" th:errors="*{firstName}"></small>
             </div>
             <div class="input-box col">
-              <span class="details">Last Name<span class="required"></span></span>
+              <span class="details" th:text="#{signup.form.lname}">Last Name<span class="required"></span></span>
+              <span class="required"></span>
               <input type="text" maxlength="30" th:field="*{lastName}" th:value="*{lastName}" required>
               <small class="text-danger" th:errors="*{lastName}"></small>
             </div>
           </div>
           <div class="row">
             <div class="input-box col">
-              <span class="details">Email<span class="required"></span></span>
+              <span class="details" th:text="#{signup.form.email}">Email<span class="required"></span></span>
+              <span class="required"></span>
               <input type="text" maxlength="30" th:field="*{email}" th:value="*{email}" required>
               <small class="text-danger" th:errors="*{email}"></small>
             </div>
             <div class="input-box col">
-              <span class="details">Phone Number<span class="required"></span></span>
+              <span class="details" th:text="#{signup.form.phone}">Phone Number<span class="required"></span></span>
+              <span class="required"></span>
               <input type="text" maxlength="30" th:field="*{phone}" th:value="*{phone}" required>
               <small class="text-danger" th:errors="*{phone}"></small>
             </div>
           </div>
           <div class="row">
           <div class="input-box col">
-            <span class="details">Date of Birth<span class="required"></span></span>
+            <span class="details" th:text="#{signup.form.birthdate}">Date of Birth<span class="required"></span></span>
+            <span class="required"></span>
             <input type="date" th:field="*{dateOfBirth}" th:value="*{dateOfBirth}" required>
             <small class="text-danger" th:errors="*{dateOfBirth}"></small>
           </div>
@@ -57,28 +62,29 @@
             <input type="radio" name="gender" id="dot-1" th:value="Male" th:field="*{gender}" th:checked="${signupModel.gender == 'Male'}" required>
             <input type="radio" name="gender" id="dot-2" th:value="Female" th:field="*{gender}" th:checked="${signupModel.gender == 'Female'}" required>
             <small class="text-danger" th:errors="*{gender}"></small>
-            <span class="details">Gender<span class="required"></span></span>
+            <span class="details" th:text="#{signup.form.gender}">Gender<span class="required"></span></span>
+            <span class="required"></span>
             <div class="category">
               <label for="dot-1">
                 <span class="dot one"></span>
-                <span class="gender">Male</span>
+                <span class="gender" th:text="#{signup.form.gender.male}">Male</span>
               </label>
               <label for="dot-2">
                 <span class="dot two"></span>
-                <span class="gender">Female</span>
+                <span class="gender" th:text="#{signup.form.gender.female}">Female</span>
               </label>
             </div>
           </div>
           </div>
           <div class="row">
           <div class="input-box">
-            <span class="details">Medical History</span>
+            <span class="details" th:text="#{signup.form.medhistory}">Medical History</span>
             <textarea rows="3" cols="85" th:field="*{medicalHistory}" th:value="*{medicalHistory}" placeholder="Enter your medical history(optional)"></textarea>
           </div>
           </div>
         </div>
         <div class="button">
-          <input type="submit" value="Update">
+          <input type="submit" th:value="#{button.update}">
         </div>
       </form>
     </div>

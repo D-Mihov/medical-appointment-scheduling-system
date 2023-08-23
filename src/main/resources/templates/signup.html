@@ -13,42 +13,49 @@
 <body>
 <section class="align-items-center">
     <div class="container">
-        <div class="title">Patient Registration</div>
+        <div class="title" th:text="#{signup.form.title}">Patient Registration</div>
         <div class="content">
             <form th:action="@{/signup}" method="post" th:object="${signupModel}">
                 <div class="user-details">
                     <div class="input-box">
-                        <span class="details">First Name<span class="required"></span></span>
-                        <input type="text" th:field="*{firstName}" placeholder="Enter your first name" required>
+                        <span class="details" th:text="#{signup.form.fname}">First Name<span class="required"></span></span>
+                        <span class="required"></span>
+                        <input type="text" th:field="*{firstName}" required>
                         <small class="text-danger" th:errors="*{firstName}"></small>
                     </div>
                     <div class="input-box">
-                        <span class="details">Last Name<span class="required"></span></span>
-                        <input type="text" th:field="*{lastName}" placeholder="Enter your last name" required>
+                        <span class="details" th:text="#{signup.form.lname}">Last Name<span class="required"></span></span>
+                        <span class="required"></span>
+                        <input type="text" th:field="*{lastName}" required>
                         <small class="text-danger" th:errors="*{lastName}"></small>
                     </div>
                     <div class="input-box">
-                        <span class="details">Email<span class="required"></span></span>
-                        <input type="text" th:field="*{email}" placeholder="Enter your email" required>
+                        <span class="details" th:text="#{signup.form.email}">Email<span class="required"></span></span>
+                        <span class="required"></span>
+                        <input type="text" th:field="*{email}" required>
                         <small class="text-danger" th:errors="*{email}"></small>
                     </div>
                     <div class="input-box">
-                        <span class="details">Phone Number<span class="required"></span></span>
-                        <input type="text" th:field="*{phone}" placeholder="Enter your number" required>
+                        <span class="details" th:text="#{signup.form.phone}">Phone Number<span class="required"></span></span>
+                        <span class="required"></span>
+                        <input type="text" th:field="*{phone}" required>
                         <small class="text-danger" th:errors="*{phone}"></small>
                     </div>
                     <div class="input-box">
-                        <span class="details">Password<span class="required"></span></span>
-                        <input type="password" th:field="*{password}" placeholder="Enter your password" required>
+                        <span class="details" th:text="#{signup.form.password}">Password<span class="required"></span></span>
+                        <span class="required"></span>
+                        <input type="password" th:field="*{password}" required>
                         <small class="text-danger" th:errors="*{password}"></small>
                     </div>
                     <div class="input-box">
-                        <span class="details">Confirm Password<span class="required"></span></span>
-                        <input type="password" th:field="*{confirmPassword}" placeholder="Confirm your password" required>
+                        <span class="details" th:text="#{signup.form.confpassword}">Confirm Password<span class="required"></span></span>
+                        <span class="required"></span>
+                        <input type="password" th:field="*{confirmPassword}" required>
                         <small class="text-danger" th:errors="*{confirmPassword}"></small>
                     </div>
                     <div class="input-box">
-                        <span class="details">Date of Birth<span class="required"></span></span>
+                        <span class="details" th:text="#{signup.form.birthdate}">Date of Birth<span class="required"></span></span>
+                        <span class="required"></span>
                         <input type="date" th:field="*{dateOfBirth}" required>
                         <small class="text-danger" th:errors="*{dateOfBirth}"></small>
                     </div>
@@ -56,32 +63,33 @@
                         <input type="radio" name="gender" id="dot-1" th:value="Male" th:field="*{gender}" required>
                         <input type="radio" name="gender" id="dot-2" th:value="Female" th:field="*{gender}" required>
                         <small class="text-danger" th:errors="*{gender}"></small>
-                        <span class="details">Gender<span class="required"></span></span>
+                        <span class="details" th:text="#{signup.form.gender}">Gender<span class="required"></span></span>
+                        <span class="required"></span>
                         <div class="category">
                             <label for="dot-1">
                                 <span class="dot one"></span>
-                                <span class="gender">Male</span>
+                                <span class="gender" th:text="#{signup.form.gender.male}">Male</span>
                             </label>
                             <label for="dot-2">
                                 <span class="dot two"></span>
-                                <span class="gender">Female</span>
+                                <span class="gender" th:text="#{signup.form.gender.female}">Female</span>
                             </label>
                         </div>
                     </div>
                     <div class="input-box">
-                        <span class="details">Medical History</span>
-                        <textarea rows="3" cols="76" th:field="*{medicalHistory}" placeholder="Enter your medical history(optional)"></textarea>
+                        <span class="details" th:text="#{signup.form.medhistory}">Medical History</span>
+                        <textarea rows="3" cols="76" th:field="*{medicalHistory}"></textarea>
                     </div>
                 </div>
                 <div class="button">
-                    <input type="submit" value="Register">
+                    <input type="submit" th:value="#{signup.form.button}">
                 </div>
                 <div class="row">
                     <div class="col-6 text-start">
-                        <a th:href="@{/login}">Have account already? Login!</a>
+                        <a th:href="@{/login}" th:text="#{signup.form.login.link}">Have account already? Login!</a>
                     </div>
                     <div class="col-6 text-end">
-                        <a th:href="@{/}">Return to Home!</a>
+                        <a th:href="@{/}" th:text="#{signup.form.home.link}">Return to Home!</a>
                     </div>
                 </div>
             </form>

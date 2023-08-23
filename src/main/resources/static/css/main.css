@@ -51,9 +51,7 @@ body{
 
 .spark-button {
     position: static;
-    display: inline-block;
     width: 100px;
-    margin-top: 20px;
     margin-right: 10px;
     margin-left: 10px;
     padding: 10px 16px;
@@ -91,4 +89,8 @@ body{
     .container-2 {
         max-width: none;
     }
+}
+
+.one-row-element {
+    display: inline-block;
 }

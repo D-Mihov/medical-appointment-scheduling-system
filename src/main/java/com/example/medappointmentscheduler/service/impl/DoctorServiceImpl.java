@@ -63,6 +63,11 @@ public class DoctorServiceImpl implements DoctorService {
         doctorRepository.delete(doctor);
     }
 
+    @Override
+    public Doctor getDoctorByEmail(String email) {
+        return doctorRepository.findByEmail(email).orElse(null);
+    }
+
     private void SetDoctorDetails(SignupDoctorModel doctorDTO, Doctor doctor) {
         doctor.setFirstName(doctorDTO.getFirstName());
         doctor.setLastName(doctorDTO.getLastName());

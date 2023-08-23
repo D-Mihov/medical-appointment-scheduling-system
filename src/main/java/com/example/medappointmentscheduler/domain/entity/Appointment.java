@@ -10,20 +10,24 @@ import java.util.Date;
 @Entity
 @Table(name = "appointments")
 public class Appointment extends BaseEntity{
-    @Column(nullable = false)
-    private Date date;
+    @Column(nullable = false, name = "patient_full_name")
+    private String patientFullName;
+
+    @Column(nullable = false, name = "patient_email")
+    private String patientEmail;
+
+    @Column(nullable = false, name = "appointment_date")
+    private Date appointmentDate;
+
+    @Column(nullable = false, name = "appointment_hour")
+    private Time appointmentHour;
 
     @Column(nullable = false)
-    private Time time;
-
-    private int duration;
+    private String diseases;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private AppointmentStatusEnum status;
-
-    @Column(nullable = false)
-    private BigDecimal cost;
 
     @Column(columnDefinition = "TEXT")
     private String notes;
@@ -37,30 +41,48 @@ public class Appointment extends BaseEntity{
     public Appointment() {
     }
 
-    public Date getDate() {
-        return date;
+    public String getPatientFullName() {
+        return patientFullName;
     }
 
-    public Appointment setDate(Date date) {
-        this.date = date;
+    public Appointment setPatientFullName(String patientFullName) {
+        this.patientFullName = patientFullName;
         return this;
     }
 
-    public Time getTime() {
-        return time;
+    public String getPatientEmail() {
+        return patientEmail;
     }
 
-    public Appointment setTime(Time time) {
-        this.time = time;
+    public Appointment setPatientEmail(String patientEmail) {
+        this.patientEmail = patientEmail;
         return this;
     }
 
-    public int getDuration() {
-        return duration;
+    public Date getAppointmentDate() {
+        return appointmentDate;
     }
 
-    public Appointment setDuration(int duration) {
-        this.duration = duration;
+    public Appointment setAppointmentDate(Date appointmentDate) {
+        this.appointmentDate = appointmentDate;
+        return this;
+    }
+
+    public Time getAppointmentHour() {
+        return appointmentHour;
+    }
+
+    public Appointment setAppointmentHour(Time appointmentHour) {
+        this.appointmentHour = appointmentHour;
+        return this;
+    }
+
+    public String getDiseases() {
+        return diseases;
+    }
+
+    public Appointment setDiseases(String diseases) {
+        this.diseases = diseases;
         return this;
     }
 
@@ -70,15 +92,6 @@ public class Appointment extends BaseEntity{
 
     public Appointment setStatus(AppointmentStatusEnum status) {
         this.status = status;
-        return this;
-    }
-
-    public BigDecimal getCost() {
-        return cost;
-    }
-
-    public Appointment setCost(BigDecimal cost) {
-        this.cost = cost;
         return this;
     }
 
@@ -112,11 +125,12 @@ public class Appointment extends BaseEntity{
     @Override
     public String toString() {
         return "Appointment{" +
-                "date=" + date +
-                ", time=" + time +
-                ", duration=" + duration +
+                "patientFullName='" + patientFullName + '\'' +
+                ", patientEmail='" + patientEmail + '\'' +
+                ", appointmentDate=" + appointmentDate +
+                ", appointmentHour=" + appointmentHour +
+                ", diseases='" + diseases + '\'' +
                 ", status=" + status +
-                ", cost=" + cost +
                 ", notes='" + notes + '\'' +
                 ", patient=" + patient +
                 ", doctor=" + doctor +

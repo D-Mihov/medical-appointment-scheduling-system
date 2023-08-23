@@ -11,4 +11,5 @@ public interface DoctorService {
     Doctor createDoctor(SignupDoctorModel doctorDTO);
     Doctor updateDoctor(Long id, SignupDoctorModel doctorDTO);
     void deleteDoctor(Long id);
+    Doctor getDoctorByEmail(String email);
 }

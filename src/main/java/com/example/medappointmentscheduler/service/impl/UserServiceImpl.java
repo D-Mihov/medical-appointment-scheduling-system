@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
 
     public void initAdmin() {
         if (userRepository.count() == 0) {
-            createUser("daniel.mihovv@gmail.com", adminPass, "admin");
+            createUser("daniel.mihovv@gmail.com", adminPass, "ADMIN");
         }
     }
 

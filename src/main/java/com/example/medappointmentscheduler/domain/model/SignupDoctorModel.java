@@ -17,7 +17,7 @@ public class SignupDoctorModel {
     @NotBlank
     private String lastName;
     @NotBlank
-    @Pattern(regexp ="^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "{javax.validation.constraints.Email.message}")
+    @Pattern(regexp ="^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "{jakarta.validation.constraints.Email.message}")
     private String email;
     @Size(min = 6, max = 30)
     private String password;

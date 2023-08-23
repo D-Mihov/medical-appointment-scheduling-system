@@ -20,8 +20,6 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
 
         log.debug("Authentication failed.");
-//        request.setAttribute("error", "Invalid email or password");
         response.sendRedirect(request.getContextPath() + "/login?badCredentials");
-//        request.getRequestDispatcher("/login?error").forward(request, response);
     }
 }

@@ -4,6 +4,7 @@ import com.example.medappointmentscheduler.domain.entity.Patient;
 import com.example.medappointmentscheduler.domain.entity.User;
 import com.example.medappointmentscheduler.domain.entity.enums.PatientGenderEnum;
 import com.example.medappointmentscheduler.domain.model.SignupModel;
+import com.example.medappointmentscheduler.error.PatientEmailNotFoundException;
 import com.example.medappointmentscheduler.error.PatientNotFoundException;
 import com.example.medappointmentscheduler.repository.PatientRepository;
 import com.example.medappointmentscheduler.repository.UserRepository;
@@ -31,7 +32,7 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public Patient getPatientById(Long patientId) throws PatientNotFoundException {
+    public Patient getPatientById(Long patientId) throws PatientEmailNotFoundException {
         return patientRepository.findById(patientId)
                 .orElseThrow(() -> new PatientNotFoundException(patientId));
     }
@@ -50,7 +51,7 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public Patient updatePatient(Long patientId, SignupModel patientDTO) throws PatientNotFoundException {
+    public Patient updatePatient(Long patientId, SignupModel patientDTO) throws PatientEmailNotFoundException {
         Patient patient = getPatientById(patientId);
         SetPatientDetails(patientDTO, patient);
         patient.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
@@ -60,9 +61,14 @@ public class PatientServiceImpl implements PatientService {
 
 
     @Override
-    public void deletePatient(Long patientId) throws PatientNotFoundException {
+    public void deletePatient(Long patientId) throws PatientEmailNotFoundException {
         Patient patient = getPatientById(patientId);
         patientRepository.delete(patient);
+    }
+
+    @Override
+    public Patient getPatientByEmail(String email) {
+        return patientRepository.findByEmail(email).orElse(null);
     }
 
     private void SetPatientDetails(SignupModel patientDTO, Patient patient) {

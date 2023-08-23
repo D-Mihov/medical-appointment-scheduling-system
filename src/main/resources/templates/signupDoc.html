@@ -19,74 +19,81 @@
 <header th:replace="/fragments/commons::nav"></header>
 <section class="h-100 h-v-center">
     <div class="container">
-        <div class="title">Doctor Registration</div>
+        <div class="title" th:text="#{signup.doctor.form.title}">Doctor Registration</div>
         <div class="content">
             <form th:action="@{/signupDoctor}" method="post" th:object="${signupDoctorModel}">
                 <div class="user-details">
                     <div class="row">
                     <div class="input-box col">
-                        <span class="details">First Name<span class="required"></span></span>
-                        <input type="text" maxlength="30" th:field="*{firstName}" placeholder="Enter Doctor first name" required>
+                        <span class="details" th:text="#{signup.doctor.form.fname}">First Name<span class="required"></span></span>
+                        <span class="required"></span>
+                        <input type="text" maxlength="30" th:field="*{firstName}" required>
                         <small class="text-danger" th:errors="*{firstName}"></small>
                     </div>
                     <div class="input-box col">
-                        <span class="details">Last Name<span class="required"></span></span>
-                        <input type="text" maxlength="30" th:field="*{lastName}" placeholder="Enter Doctor last name" required>
+                        <span class="details" th:text="#{signup.doctor.form.lname}">Last Name<span class="required"></span></span>
+                        <span class="required"></span>
+                        <input type="text" maxlength="30" th:field="*{lastName}" required>
                         <small class="text-danger" th:errors="*{lastName}"></small>
                     </div>
                     </div>
                     <div class="row">
                     <div class="input-box col">
-                        <span class="details">Email<span class="required"></span></span>
-                        <input type="text" maxlength="30" th:field="*{email}" placeholder="Enter Doctor email" required>
+                        <span class="details" th:text="#{signup.doctor.form.email}">Email<span class="required"></span></span>
+                        <span class="required"></span>
+                        <input type="text" maxlength="30" th:field="*{email}" required>
                         <small class="text-danger" th:errors="*{email}"></small>
                     </div>
                     <div class="input-box col">
-                        <span class="details">Phone Number<span class="required"></span></span>
-                        <input type="text" maxlength="30" th:field="*{phone}" placeholder="Enter Doctor number" required>
+                        <span class="details" th:text="#{signup.doctor.form.phone}">Phone Number<span class="required"></span></span>
+                        <span class="required"></span>
+                        <input type="text" maxlength="30" th:field="*{phone}" required>
                         <small class="text-danger" th:errors="*{phone}"></small>
                     </div>
                     </div>
                     <div class="row">
                     <div class="input-box col">
-                        <span class="details">Password<span class="required"></span></span>
-                        <input type="password" maxlength="30" th:field="*{password}" placeholder="Enter Doctor password" required>
+                        <span class="details" th:text="#{signup.doctor.form.password}">Password<span class="required"></span></span>
+                        <span class="required"></span>
+                        <input type="password" maxlength="30" th:field="*{password}" required>
                         <small class="text-danger" th:errors="*{password}"></small>
                     </div>
                     <div class="input-box col">
-                        <span class="details">Confirm Password<span class="required"></span></span>
-                        <input type="password" maxlength="30" th:field="*{confirmPassword}" placeholder="Confirm Doctor password"
-                               required>
+                        <span class="details" th:text="#{signup.doctor.form.confpassword}">Confirm Password<span class="required"></span></span>
+                        <span class="required"></span>
+                        <input type="password" maxlength="30" th:field="*{confirmPassword}" required>
                         <small class="text-danger" th:errors="*{confirmPassword}"></small>
                     </div>
                     </div>
                     <div class="row">
                     <div class="input-box col">
-                        <span class="details">Speciality<span class="required"></span></span>
-                        <input type="text" maxlength="30" th:field="*{speciality}" placeholder="Enter Doctor speciality" required>
+                        <span class="details" th:text="#{signup.doctor.form.specialty}">Speciality<span class="required"></span></span>
+                        <span class="required"></span>
+                        <input type="text" maxlength="30" th:field="*{speciality}" required>
                         <small class="text-danger" th:errors="*{speciality}"></small>
                     </div>
                     <div class="input-box col">
-                        <span class="details">Experience<span class="required"></span></span>
-                        <input type="text" maxlength="30" th:field="*{experience}" placeholder="Enter experience in years" required>
+                        <span class="details" th:text="#{signup.doctor.form.experience}">Experience<span class="required"></span></span>
+                        <span class="required"></span>
+                        <input type="text" maxlength="30" th:field="*{experience}" required>
                         <small class="text-danger" th:errors="*{experience}"></small>
                     </div>
                     </div>
                     <div class="row">
                     <div class="input-box col">
-                        <span class="details">Education</span>
-                        <textarea rows="3" cols="38" th:field="*{education}"
-                                  placeholder="Enter Doctor education(optional)"></textarea>
+                        <span class="details" th:text="#{signup.doctor.form.education}">Education</span>
+                        <textarea rows="3" cols="38" th:field="*{education}"></textarea>
                     </div>
                     <div class="input-box col">
-                        <span class="details">Doctor ID<span class="required"></span></span>
-                        <input type="text" maxlength="30" th:field="*{doctorId}" placeholder="Enter Doctor ID" required>
+                        <span class="details" th:text="#{signup.doctor.form.doctorid}">Doctor ID<span class="required"></span></span>
+                        <span class="required"></span>
+                        <input type="text" maxlength="30" th:field="*{doctorId}" required>
                         <small class="text-danger" th:errors="*{doctorId}"></small>
                     </div>
                     </div>
                 </div>
                 <div class="button">
-                    <input type="submit" value="Register">
+                    <input type="submit" th:value="#{signup.doctor.form.button}">
                 </div>
             </form>
         </div>

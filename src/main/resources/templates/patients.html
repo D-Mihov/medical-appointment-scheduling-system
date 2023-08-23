@@ -24,32 +24,32 @@
             <div class="col-md-12">
                 <div class="card paint-card">
                     <div class="card-body">
-                        <p class="fs-3 text-center">Patients</p>
+                        <p class="fs-3 text-center" th:text="#{patients.title}">Patients</p>
                         <table class="table">
                             <thead>
                             <tr>
-                                <th class="one-row-col" scope="col">Full Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Phone</th>
-                                <th scope="col">Date Of Birth</th>
-                                <th scope="col">Gender</th>
-                                <th class="one-row-col" scope="col">Medical History</th>
-                                <th scope="col">Actions</th>
+                                <th class="one-row-col" scope="col" th:text="#{patients.fullname}">Full Name</th>
+                                <th scope="col" th:text="#{patients.email}">Email</th>
+                                <th scope="col" th:text="#{patients.phone}">Phone</th>
+                                <th scope="col" th:text="#{patients.birthdate}">Date Of Birth</th>
+                                <th scope="col" th:text="#{patients.gender}">Gender</th>
+                                <th scope="col" th:text="#{patients.medhistory}">Medical History</th>
+                                <th scope="col" th:text="#{patients.actions}">Actions</th>
                             </tr>
                             </thead>
                             <tbody class="table-group-divider">
-                            <!-- Iterate over the doctors and display their details -->
                             <tr th:each="patient : ${patients}">
                                 <td class="one-row-col" th:text="${patient.fullName}"></td>
                                 <td th:text="${patient.email}"></td>
                                 <td th:text="${patient.phone}"></td>
                                 <td th:text="${#dates.format(patient.dateOfBirth, 'dd/MM/yyyy')}"></td>
                                 <td th:text="${patient.gender}"></td>
-                                <td class="my-cell" th:text="${patient.medicalHistory}"></td>
-                                <td class="one-row-col">
-                                    <!-- Add buttons for update and delete actions -->
-                                    <a class="btn btn-primary" th:href="@{/patients/{id}/edit(id=${patient.id})}">Update</a>
-                                    <a class="btn btn-danger" th:href="@{/patients/delete(id=${patient.id})}" onclick="return confirm('Are you sure you want to delete this patient?')">Delete</a>
+                                <td style="max-width: 400px" th:text="${patient.medicalHistory}"></td>
+                                <td>
+                                    <div style="display: grid; justify-content: center;">
+                                    <a class="btn btn-primary" style="margin-bottom: 10px" th:href="@{/patients/{id}/edit(id=${patient.id})}" th:text="#{patients.button.update}">Update</a>
+                                    <a class="btn btn-danger" th:href="@{/patients/delete(id=${patient.id})}" th:text="#{patients.button.delete}" onclick="return confirm('Are you sure you want to delete this patient?')">Delete</a>
+                                    </div>
                                 </td>
                             </tr>
                             </tbody>
@@ -61,6 +61,6 @@
     </div>
 </div>
 
-
+<footer th:replace="fragments/commons.html::footerx(textColor='text-color')"></footer>
 </body>
 </html>

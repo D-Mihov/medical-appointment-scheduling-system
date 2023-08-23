@@ -22,26 +22,13 @@ public class SecurityConfig {
     @Autowired
     private CustomAuthenticationFailureHandler failureHandler;
 
-    //    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http
-//                .csrf().disable()
-//                .authorizeRequests().antMatchers("/register**")
-//                .permitAll() .anyRequest().authenticated()
-//                .and()
-//                .formLogin() .loginPage("/login")
-//                .permitAll()
-//                .and()
-//                .logout() .invalidateHttpSession(true)
-//                .clearAuthentication(true) .permitAll();
-//    }
-//      localhost:8080/doctors/profile
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/signupDoctor", "/doctors/**", "/patients/**").hasRole("ADMIN")
-                .requestMatchers("/admin", "/changePassword", "/signupDoctor", "/doctors/**", "/patients/**").authenticated()
+                .requestMatchers("/signupDoctor", "/patients/**").hasRole("ADMIN")
+                .requestMatchers("/add-appointment", "/getAvailableHours/**").hasAnyRole("ADMIN", "PATIENT")
+                .requestMatchers("/admin", "/changePassword", "/signupDoctor", "/doctors/**", "/patients/**", "/add-appointment", "/getAvailableHours/**", "/appointments/**").authenticated()
                 .requestMatchers("/login", "/signup").anonymous()
                 .requestMatchers("/logout", "/css/**", "/js/**", "/img/**", "**/favicon.ico").permitAll()
                 .requestMatchers("/").permitAll()
@@ -62,24 +49,5 @@ public class SecurityConfig {
                 .and()
                 .httpBasic();
         return http.build();
-//        http.authorizeRequests().requestMatchers("/**").hasRole("USER").and().formLogin();
-//        return http.build();
     }
-
-
-
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http.authorizeRequests()
-////        http.authorizeRequests()
-////                .antMatchers("/securityNone")
-////                .permitAll()
-////                .anyRequest()
-////                .authenticated()
-////                .and()
-////                .httpBasic()
-////                .authenticationEntryPoint(authenticationEntryPoint);
-////        http.addFilterAfter(new CustomFilter(), BasicAuthenticationFilter.class);
-////        return http.build();
-//    }
 }

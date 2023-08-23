@@ -50,13 +50,19 @@
         <!-- Left links -->
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item" sec:authorize="hasRole('ADMIN')">
-            <a class="nav-link navbar-custom-size" th:href="@{/patients}">Patients</a>
+            <a class="nav-link navbar-custom-size" th:href="@{/patients}" th:text="#{patients.title}">Patients</a>
+          </li>
+          <li class="nav-item" sec:authorize="hasAnyRole('ADMIN', 'DOCTOR')">
+            <a class="nav-link navbar-custom-size" th:href="@{/doctors}" th:text="#{doctors.title}">Doctors</a>
           </li>
           <li class="nav-item" sec:authorize="hasRole('ADMIN')">
-            <a class="nav-link navbar-custom-size" th:href="@{/doctors}">Doctors</a>
+            <a class="nav-link navbar-custom-size" th:href="@{/signupDoctor}" th:text="#{signup.doctor.form.title}">Add Doctor</a>
           </li>
-          <li class="nav-item" sec:authorize="hasRole('ADMIN')">
-            <a class="nav-link navbar-custom-size" th:href="@{/signupDoctor}">Add Doctor</a>
+          <li class="nav-item" sec:authorize="hasRole('PATIENT')">
+            <a class="nav-link navbar-custom-size" th:href="@{/add-appointment}" th:text="#{addappointment.title}">Add Appointment</a>
+          </li>
+          <li class="nav-item" sec:authorize="hasAnyRole('ADMIN', 'DOCTOR', 'PATIENT')">
+            <a class="nav-link navbar-custom-size" th:href="@{/appointments}" th:text="#{appointments.title}">Appointments</a>
           </li>
           <!-- Navbar dropdown -->
           <li class="nav-item dropdown">
@@ -73,14 +79,24 @@
             <!-- Dropdown menu -->
             <ul class="dropdown-menu" role="menu" aria-labelledby="navbarDropdown">
               <li>
-                <a class="dropdown-item" th:href="@{/changePassword}">Change Password</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#">action</a>
+                <a class="dropdown-item" th:href="@{/changePassword}" th:text="#{changepass.title}">Change Password</a>
               </li>
               <li><hr class="dropdown-divider" /></li>
               <li>
-                <a class="dropdown-item" th:href="@{/logout}">Logout</a>
+                <div class="dropdown-item">
+                <h6 style="display: inline; font-weight: 400;" th:text="#{home.unauthenticated.lang}">Language: </h6>
+                <a style="display: inline-block" th:href="@{'?lang=en'}">
+                  <img src="/img/gb.png" alt="en">
+                </a>
+                <h5 style="margin-top: 0px; margin-bottom: 0px; display: inline-block; font-weight: 400;">|</h5>
+                <a style="display: inline-block;" th:href="@{'?lang=bg'}">
+                  <img src="/img/bg.png" alt="bg">
+                </a>
+                </div>
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a class="dropdown-item" th:href="@{/logout}" th:text="#{button.logout}">Logout</a>
               </li>
             </ul>
           </li>
@@ -96,8 +112,8 @@
 
 <footer th:fragment="footerx" class="footer bg-blur">
   <div class="container-fluid text-center">
-    <div class="h6" th:classappend="${textColor ne null} ? ${textColor}">
-      &copy;Daniel Mihov 2023. All rights reserved.
+    <div class="h6" th:classappend="${textColor ne null} ? ${textColor}" th:text="#{nav.footer}">
+      HealthSync 2023. All rights reserved.
     </div>
   </div>
 </footer>

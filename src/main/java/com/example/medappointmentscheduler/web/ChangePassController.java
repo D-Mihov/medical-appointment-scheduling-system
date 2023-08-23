@@ -18,7 +18,6 @@ import java.security.Principal;
 @Controller
 public class ChangePassController {
     private final Logger log = LoggerFactory.getLogger(getClass());
-
     private final UserService userService;
 
     public ChangePassController(UserService userService) {

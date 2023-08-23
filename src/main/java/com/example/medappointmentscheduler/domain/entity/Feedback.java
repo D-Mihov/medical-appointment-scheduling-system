@@ -19,6 +19,9 @@ public class Feedback extends BaseEntity{
     @ManyToOne
     private Doctor doctor;
 
+    @ManyToOne
+    private Appointment appointment;
+
     public Feedback() {
     }
 
@@ -58,6 +61,15 @@ public class Feedback extends BaseEntity{
         return this;
     }
 
+    public Appointment getAppointment() {
+        return appointment;
+    }
+
+    public Feedback setAppointment(Appointment appointment) {
+        this.appointment = appointment;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Feedback{" +
@@ -65,6 +77,7 @@ public class Feedback extends BaseEntity{
                 ", rating=" + rating +
                 ", patient=" + patient +
                 ", doctor=" + doctor +
+                ", appointment=" + appointment +
                 '}';
     }
 }

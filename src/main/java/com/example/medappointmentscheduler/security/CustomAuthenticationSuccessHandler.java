@@ -23,8 +23,6 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
         log.debug("Authentication is successful.");
 
-//        CustomUserDetails currentUser = (CustomUserDetails) authentication.getPrincipal();
-
         response.sendRedirect(request.getContextPath() + "/admin");
     }
 }

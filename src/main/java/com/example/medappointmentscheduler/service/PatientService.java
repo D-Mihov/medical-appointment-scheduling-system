@@ -11,4 +11,6 @@ public interface PatientService {
     Patient getPatientById(Long patientId);
     Patient updatePatient(Long patientId, SignupModel patientDTO);
     void deletePatient(Long patientId);
+
+    Patient getPatientByEmail(String email);
 }
